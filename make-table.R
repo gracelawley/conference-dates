@@ -48,4 +48,4 @@ conf_table <- conf_data %>%
   tab_options(heading.align = "left")
 
 
-gtsave(conf_table, "table.html")
+gtsave(conf_table, "figures/index.html")
