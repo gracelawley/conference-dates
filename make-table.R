@@ -3,7 +3,7 @@ library(dplyr)
 library(glue)
 library(stringr)
 library(gt)
-
+library(fs)
 
 conf_data <- read_delim("conferences.csv", delim = ";") %>%
   # collapse/format conference name
@@ -43,9 +43,9 @@ conf_table <- conf_data %>%
   ) %>%
   tab_header(
     title = "Upcoming Conferences, 2020-2021",
-    subtitle = paste0("Computational Linguistics, Autism Spectrum Disorder, Natural Language Processing, Corpus Linguistics, Speech & Language Disorders")) %>%
-  tab_source_note(paste0("Last Updated: ", Sys.Date())) %>%
+    subtitle = paste0("*Computational Linguistics, Autism Spectrum Disorder, Natural Language Processing, Corpus Linguistics, Speech & Language Disorders*") %>% md()) %>%
+  tab_source_note(paste0("Last Updated: ", Sys.Date(), "<br> Source code: <https://github.com/gracelawley/conference-dates>") %>% md()) %>%
   tab_options(heading.align = "left")
 
 
-gtsave(conf_table, "figures/index.html")
+gtsave(conf_table, "index.html", path = path(getwd(), "figures"))
